@@ -16,7 +16,9 @@ I actually use Google Drive and backup the database there, so it is offsite too!
 
 code
 ==========
+[salva code here](salva.bat)
 
+```Batchfile
 set dbUser=%1
 set dbPass=%2
 set dbName=%3
@@ -31,3 +33,4 @@ set DL=_
 
 ::actual commands executed
 %mySqlDumb% -u%dbUser% -p%dbPass% --result-file=%backupDir%\%filePrefix%%DL%%fileSuffix%%fileExt% %dbName%
+```
