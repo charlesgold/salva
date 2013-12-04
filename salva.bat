@@ -6,7 +6,7 @@
 ::installation. In order to customize for your needs, be sure to locate your
 :: "mysqldump" directory location and changed accordingly.
 ::
-::Example cmd line: salva.bat root pass my_db c:\bkup mybkup
+::Example cmd line: salva.bat root pass my_db c:\bkup prefix
 ::
 ::
 ::I needed a quick way to backup customer databases in WAMP setting.
@@ -23,7 +23,11 @@ set backupDir=%4
 set mySqlDumb=c:\xampp\mysql\bin\mysqldump
 :: Use a description of backup up here.
 set filePrefix=%5
-set fileSuffix=%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%_%TIME:~0,2%_%TIME:~3,2%_%TIME:~6,2%
+:: Fix Bug caused by single digit hour.
+set hh=%TIME:~0,2%
+set /a hh=%hh%+100
+set hh=%hh:~1%
+set fileSuffix=%DATE:~10,4%%DATE:~4,2%%DATE:~7,2%_%hh%_%TIME:~3,2%_%TIME:~6,2%
 set fileExt=.sql
 set DL=_
 
